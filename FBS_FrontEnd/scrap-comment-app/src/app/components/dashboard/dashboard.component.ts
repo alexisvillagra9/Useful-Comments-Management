@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Cantidades } from 'src/app/models/Comentarios/quantities';
+import { CommentsListService } from 'src/app/services/comments/comments-list.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  totalComments: Cantidades;
 
-  ngOnInit(): void {
+  constructor(private commentsListService: CommentsListService) {
+    this.totalComments = new Cantidades();
   }
 
+  ngOnInit(): void {
+    this.getCantComments();
+  }
+
+  getCantComments() {
+    this.commentsListService.getCommentsCount().subscribe(res => {
+      this.totalComments = res;
+    });
+  }
+
+  getPercentage(quant: number) {
+    let totComPer = Math.round((quant * 100) / this.totalComments.total);
+    if (isNaN(totComPer)) {
+      totComPer = 0;
+    }
+    return totComPer;
+  }
 }

@@ -1,1 +1,87 @@
-<p>dashboard works!</p>
+<div class="row row-fluid m-0 justify-content-md-center">
+  <mat-card class="comments-card all">
+    <div class="info">
+      <div class="row">
+        <div class="col h-auto">
+          <p class="count-info">{{ totalComments.total }}</p>
+          <p class="desc-info">Todas los comentarios</p>
+        </div>
+        <div class="col icon-info">
+          <mat-icon class="count-info h-auto w-auto">functions</mat-icon>
+          <p class="desc-info">{{ getPercentage(totalComments.total) }}%</p>
+        </div>
+      </div>
+      <hr class="mt-2 mb-2" />
+      <div class="row pr-3 pl-3">
+        <mat-progress-bar
+          mode="determinate"
+          value="{{ getPercentage(totalComments.total) }}"
+        ></mat-progress-bar>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card class="comments-card publications">
+    <div class="info">
+      <div class="row">
+        <div class="col h-auto">
+          <p class="count-info">{{ totalComments.postCount }}</p>
+          <p class="desc-info">Todas las publicaciones</p>
+        </div>
+        <div class="col icon-info">
+          <mat-icon class="count-info h-auto w-auto">insert_comment</mat-icon>
+          <p class="desc-info">{{ getPercentage(totalComments.postCount) }}%</p>
+        </div>
+      </div>
+      <hr class="mt-2 mb-2" />
+      <div class="row pr-3 pl-3">
+        <mat-progress-bar
+          mode="determinate"
+          value="{{ getPercentage(totalComments.postCount) }}"
+        ></mat-progress-bar>
+      </div></div
+  ></mat-card>
+  <mat-card class="comments-card answers">
+    <div class="info">
+      <div class="row">
+        <div class="col h-auto">
+          <p class="count-info">{{ totalComments.replyCount }}</p>
+          <p class="desc-info">Todas las repuestas</p>
+        </div>
+        <div class="col icon-info">
+          <mat-icon class="count-info h-auto w-auto">question_answer</mat-icon>
+          <p class="desc-info">
+            {{ getPercentage(totalComments.replyCount) }}%
+          </p>
+        </div>
+      </div>
+      <hr class="mt-2 mb-2" />
+      <div class="row pr-3 pl-3">
+        <mat-progress-bar
+          mode="determinate"
+          value="{{ getPercentage(totalComments.replyCount) }}"
+        ></mat-progress-bar>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card class="comments-card useful">
+    <div class="info">
+      <div class="row">
+        <div class="col h-auto">
+          <p class="count-info">{{ totalComments.potCount }}</p>
+          <p class="desc-info">Todos los potables</p>
+        </div>
+        <div class="col icon-info">
+          <mat-icon class="count-info h-auto w-auto">done_all</mat-icon>
+          <p class="desc-info">{{ getPercentage(totalComments.potCount) }}%</p>
+        </div>
+      </div>
+    </div>
+    <hr class="mt-2 mb-2" />
+    <div class="row pr-3 pl-3">
+      <mat-progress-bar
+        mode="determinate"
+        value="{{ getPercentage(totalComments.potCount) }}"
+      ></mat-progress-bar>
+    </div>
+  </mat-card>
+</div>
