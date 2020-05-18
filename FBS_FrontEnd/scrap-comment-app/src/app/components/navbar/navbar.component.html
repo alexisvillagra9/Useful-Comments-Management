@@ -1,14 +1,43 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button
-      mat-stroked-button
-      color="white"
-      class="p-0 w-auto h-auto"
-      routerLink="/home"
-      routerLinkActive
-    >
+    <button mat-stroked-button color="white" routerLink="/home">
       <mat-icon>home</mat-icon>
     </button>
-    <p class="m-0 h4 font-weight-bold ml-1">Useful Comments Management</p>
+    <button mat-stroked-button class="ml-2" [matMenuTriggerFor]="listMenu">
+      <p class="m-0 font-weight-bold">Listados</p>
+    </button>
+    <mat-menu #listMenu="matMenu">
+      <button mat-menu-item [routerLink]="['/comments-list', 1]">
+        <mat-icon color="primary">functions</mat-icon>
+        <span>Comentarios</span>
+      </button>
+      <button mat-menu-item [routerLink]="['/comments-list', 2]">
+        <mat-icon color="primary">insert_comment</mat-icon
+        ><span>Publicaciones</span>
+      </button>
+      <button mat-menu-item [routerLink]="['/comments-list', 3]">
+        <mat-icon color="primary">question_answer</mat-icon
+        ><span>Repuestas</span>
+      </button>
+      <button mat-menu-item [routerLink]="['/comments-list', 4]">
+        <mat-icon color="primary">done_all</mat-icon><span>Potables</span>
+      </button>
+    </mat-menu>
+    <button mat-stroked-button class="ml-2" [matMenuTriggerFor]="pageMenu">
+      <p class="m-0 font-weight-bold">Paginas</p>
+    </button>
+    <mat-menu #pageMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon color="primary">library_add</mat-icon
+        ><span class="mt-2 mb-2">Cargar</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon color="primary">pageview</mat-icon
+        ><span class="mt-2 mb-2">Modificar</span>
+      </button>
+    </mat-menu>
+    <!-- <p class="m-0 h4 font-weight-bold ml-1 w-100 text-center">
+      Useful Comments Management
+    </p> -->
   </mat-toolbar-row>
 </mat-toolbar>

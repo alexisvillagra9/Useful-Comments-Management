@@ -4,7 +4,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  background-color: #ececec!important;
+  background-color: #ececec !important;
 }
 
 h1 {
@@ -46,4 +46,9 @@ pre {
   font-variant: normal;
   font-weight: 400;
   line-height: 18.5714px;
+}
+span {
+  font-family: Comfortaa;
+  font-style: normal;
+  font-variant: normal;
 }

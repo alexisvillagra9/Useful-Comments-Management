@@ -1,1 +1,12 @@
+button {
+  height: 65%;
+  outline: none !important;
+}
 
+button.mat-menu-item {
+  color: #0d47a1;
+}
+
+button.mat-menu-item:hover {
+  background-color: #bbdefb;
+}
