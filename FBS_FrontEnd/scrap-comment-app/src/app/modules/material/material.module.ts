@@ -9,8 +9,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { CustomPaginator } from '../custom-paginator';
 
 @NgModule({
   imports: [
@@ -39,6 +40,10 @@ import {MatSortModule} from '@angular/material/sort';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule
-  ]
+  ],
+  providers: [{
+    provide: MatPaginatorIntl,
+    useClass: CustomPaginator
+  }],
 })
 export class MaterialModule { }

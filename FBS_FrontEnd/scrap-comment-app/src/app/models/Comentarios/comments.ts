@@ -5,6 +5,7 @@ export class Comentarios {
     comment_date?: Date,
     comment_text?: string,
     comment_user?: string,
+    comment_user_photo_url?: string,
     comment_user_link?: string,
     comment_post_link?: string,
     type?: string,
@@ -16,6 +17,7 @@ export class Comentarios {
     this.comment_date = comment_date;
     this.comment_text = comment_text;
     this.comment_user = comment_user;
+    this.comment_user_photo_url = comment_user_photo_url,
     this.comment_user_link = comment_user_link;
     this.comment_post_link = comment_post_link;
     this.type = type;
@@ -28,6 +30,7 @@ export class Comentarios {
   public comment_date: Date;
   public comment_text: string;
   public comment_user: string;
+  public comment_user_photo_url: string;
   public comment_user_link: string;
   public comment_post_link: string;
   public type: string;

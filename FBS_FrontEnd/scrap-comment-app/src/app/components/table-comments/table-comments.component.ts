@@ -9,16 +9,15 @@ import { TypeComment } from '../../models/enums';
 @Component({
   selector: 'app-table-comments',
   templateUrl: './table-comments.component.html',
-  styleUrls: ['./table-comments.component.css']
+  styleUrls: ['./table-comments.component.css'],
 })
 export class TableCommentsComponent implements OnInit {
-
   displayedColumns: string[] = [
     'comment_date',
     'comment_text',
     'comment_user_link',
     'comment_user_photo',
-    'actions'
+    'actions',
   ];
 
   // Seccion para crear correctamente las Tablas, Orden y Paginado
@@ -28,8 +27,7 @@ export class TableCommentsComponent implements OnInit {
 
   @Input() type: number;
 
-  constructor(private commentsListService: CommentsListService) {
-   }
+  constructor(private commentsListService: CommentsListService) {}
 
   ngOnInit(): void {
     // Decidimos que cargamos en base al url
@@ -60,12 +58,11 @@ export class TableCommentsComponent implements OnInit {
 
   getComments() {
     this.commentsListService.getComments().subscribe(
-      res => {
+      (res) => {
         this.getCommentsPost(res as Comentarios[]);
         console.log('aca');
       },
-      error =>
-        console.log('error')
+      (error) => console.log('error')
     );
   }
 
@@ -73,41 +70,38 @@ export class TableCommentsComponent implements OnInit {
     let finalDataSource: Comentarios[];
     let postDataSource: Comentarios[];
     this.commentsListService.getCommentsPost().subscribe(
-      res => {
+      (res) => {
         postDataSource = res as Comentarios[];
         finalDataSource = comments.concat(postDataSource);
         this.dataSource.data = finalDataSource;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
-      error =>
-       console.log('error')
+      (error) => console.log('error')
     );
   }
 
   getPost() {
     this.commentsListService.getCommentsPost().subscribe(
-      res => {
+      (res) => {
         this.dataSource.data = res as Comentarios[];
         // this.isLoading = false;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
-      error =>
-        console.log('error')
+      (error) => console.log('error')
     );
   }
 
   getReply() {
     this.commentsListService.getComments().subscribe(
-      res => {
+      (res) => {
         this.dataSource.data = res as Comentarios[];
         // this.isLoading = false;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
-      error =>
-       console.log('error')
+      (error) => console.log('error')
     );
   }
 
@@ -116,9 +110,9 @@ export class TableCommentsComponent implements OnInit {
     let ds2: Comentarios[];
     let finalDataSource: Comentarios[];
     this.commentsListService.getCommentsPotables().subscribe(
-      res => {
+      (res) => {
         ds1 = res as Comentarios[];
-        this.commentsListService.getCommentsPotablesPost().subscribe(res2 => {
+        this.commentsListService.getCommentsPotablesPost().subscribe((res2) => {
           ds2 = res2 as Comentarios[];
           finalDataSource = ds1.concat(ds2);
           // this.isLoading = false;
@@ -127,15 +121,32 @@ export class TableCommentsComponent implements OnInit {
           this.dataSource.paginator = this.paginator;
         });
       },
-      error =>
-        console.log('error')
+      (error) => console.log('error')
     );
   }
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  setBackGround(imgUrl: string) {
+    let imgUrlFinal = '';
+
+    if (imgUrl === '' || imgUrl === 'undefined' || imgUrl === null) {
+      imgUrlFinal = 'src/assets/images/no-photo.jpg';
+    } else {
+      imgUrlFinal = imgUrl;
+    }
+
+    const style = {
+      width: '50px',
+      height: '50px',
+      'border-radius': '50px',
+      'background-position': 'center',
+      'background-size': 'cover',
+      'background-image': 'url(' + imgUrlFinal + ')',
+    };
+    return style;
+  }
 }
