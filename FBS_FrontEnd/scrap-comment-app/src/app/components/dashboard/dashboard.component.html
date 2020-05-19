@@ -1,5 +1,8 @@
 <div class="row row-fluid m-0 justify-content-md-center">
-  <mat-card class="comments-card all">
+  <mat-card
+    class="comments-card all"
+    [routerLink]="['/comments-list', typeComment.TODOS]"
+  >
     <div class="info">
       <div class="row">
         <div class="col h-auto">
@@ -20,7 +23,10 @@
       </div>
     </div>
   </mat-card>
-  <mat-card class="comments-card publications">
+  <mat-card
+    class="comments-card publications"
+    [routerLink]="['/comments-list', typeComment.PUBLICACIONES]"
+  >
     <div class="info">
       <div class="row">
         <div class="col h-auto">
@@ -40,7 +46,10 @@
         ></mat-progress-bar>
       </div></div
   ></mat-card>
-  <mat-card class="comments-card answers">
+  <mat-card
+    class="comments-card answers"
+    [routerLink]="['/comments-list', typeComment.RESPUESTAS]"
+  >
     <div class="info">
       <div class="row">
         <div class="col h-auto">
@@ -63,7 +72,10 @@
       </div>
     </div>
   </mat-card>
-  <mat-card class="comments-card useful">
+  <mat-card
+    class="comments-card useful"
+    [routerLink]="['/comments-list', typeComment.POTABLES]"
+  >
     <div class="info">
       <div class="row">
         <div class="col h-auto">

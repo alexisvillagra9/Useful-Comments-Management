@@ -8,6 +8,9 @@ import { MatCardModule } from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   imports: [
@@ -19,7 +22,10 @@ import {MatMenuModule} from '@angular/material/menu';
     MatCardModule,
     MatProgressBarModule,
     MatDividerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     MatInputModule,
@@ -29,7 +35,10 @@ import {MatMenuModule} from '@angular/material/menu';
     MatCardModule,
     MatProgressBarModule,
     MatDividerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class MaterialModule { }

@@ -7,19 +7,19 @@
       <p class="m-0 font-weight-bold">Listados</p>
     </button>
     <mat-menu #listMenu="matMenu">
-      <button mat-menu-item [routerLink]="['/comments-list', 1]">
+      <button mat-menu-item [routerLink]="['/comments-list', typeComment.TODOS]">
         <mat-icon color="primary">functions</mat-icon>
         <span>Comentarios</span>
       </button>
-      <button mat-menu-item [routerLink]="['/comments-list', 2]">
+      <button mat-menu-item [routerLink]="['/comments-list', typeComment.PUBLICACIONES]">
         <mat-icon color="primary">insert_comment</mat-icon
         ><span>Publicaciones</span>
       </button>
-      <button mat-menu-item [routerLink]="['/comments-list', 3]">
+      <button mat-menu-item [routerLink]="['/comments-list', typeComment.RESPUESTAS]">
         <mat-icon color="primary">question_answer</mat-icon
         ><span>Repuestas</span>
       </button>
-      <button mat-menu-item [routerLink]="['/comments-list', 4]">
+      <button mat-menu-item [routerLink]="['/comments-list', typeComment.POTABLES]">
         <mat-icon color="primary">done_all</mat-icon><span>Potables</span>
       </button>
     </mat-menu>

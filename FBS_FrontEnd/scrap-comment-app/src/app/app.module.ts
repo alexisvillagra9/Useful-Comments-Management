@@ -10,6 +10,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommentsListComponent } from './pages/comments-list/comments-list.component';
+import { TableCommentsComponent } from './components/table-comments/table-comments.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CommentsListComponent } from './pages/comments-list/comments-list.compo
     NavbarComponent,
     HomeComponent,
     DashboardComponent,
-    CommentsListComponent
+    CommentsListComponent,
+    TableCommentsComponent
   ],
   imports: [
     BrowserModule,

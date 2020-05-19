@@ -51,6 +51,7 @@ mat-icon{
 
 ::ng-deep .mat-progress-bar-fill::after {
   background-color: #ffffff;
+  border-radius: 3px;
 }
 
 ::ng-deep .mat-progress-bar-buffer {

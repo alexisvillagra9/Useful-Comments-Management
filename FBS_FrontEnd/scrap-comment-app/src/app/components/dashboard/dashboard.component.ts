@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cantidades } from 'src/app/models/Comentarios/quantities';
 import { CommentsListService } from 'src/app/services/comments/comments-list.service';
+import { TypeComment } from 'src/app/models/enums';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,7 @@ import { CommentsListService } from 'src/app/services/comments/comments-list.ser
 })
 export class DashboardComponent implements OnInit {
 
+  typeComment = TypeComment;
   totalComments: Cantidades;
 
   constructor(private commentsListService: CommentsListService) {

@@ -10,14 +10,16 @@ import { ActivatedRoute } from '@angular/router';
 export class CommentsListComponent implements OnInit {
 
   typeDescription = '';
-  type: number;
+  type = 0;
 
   constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.type = Number(this.route.snapshot.paramMap.get('type'));
-    this.typeDescription = TypeComment[this.type];
+    this.route.params.subscribe(param => {
+      this.type = Number(param.type);
+      this.typeDescription = TypeComment[this.type];
+    });
   }
 
 }

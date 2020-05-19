@@ -1,0 +1,21 @@
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+table {
+  margin-top: -15px;
+}
+
+.photo-user {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-image: url("src/assets/images/no-photo.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+td, th {
+  padding-left: 1%;
+  padding-right: 1%;
+}
