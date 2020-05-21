@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeComment } from 'src/app/models/enums';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-comments-list',
@@ -12,7 +12,10 @@ export class CommentsListComponent implements OnInit {
   typeDescription = '';
   type = 0;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+    };
   }
 
   ngOnInit(): void {

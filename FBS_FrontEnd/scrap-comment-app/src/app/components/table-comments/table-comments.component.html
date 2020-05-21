@@ -1,4 +1,4 @@
-<div class="mt-1">
+<div class="mt-1 mb-1">
   <mat-form-field class="w-100">
     <mat-label>Encuentra tu comentario</mat-label>
     <input
@@ -10,7 +10,6 @@
   <table
     mat-table
     [dataSource]="dataSource"
-    class="mat-elevation-z8"
     matSort
     matSortActive="comment_date"
     matSortDirection="desc"
@@ -20,7 +19,33 @@
         FECHA COMENTARIO
       </th>
       <td mat-cell *matCellDef="let element">
-        {{ element.comment_date | date: "dd/MM/yyyy HH:mm:ss" }}
+        <div class="row">
+          <div
+            class="col-auto pl-3 pr-0 d-flex flex-column justify-content-center"
+          >
+            <div
+              class="type-class"
+              [ngStyle]="setBackGroundTypeDif(typeComment.PUBLICACIONES)"
+              *ngIf="element.type === 'post'"
+              matTooltip="Publicacion"
+            ></div>
+            <div
+              class="type-class"
+              [ngStyle]="setBackGroundTypeDif(typeComment.RESPUESTAS)"
+              *ngIf="element.type === 'reply'"
+              matTooltip="Respuesta"
+            ></div>
+            <div
+              class="type-class"
+              [ngStyle]="setBackGroundTypeDif(typeComment.POTABLES)"
+              *ngIf="element.potable === 1"
+              matTooltip="Potable"
+            ></div>
+          </div>
+          <div class="col d-flex align-items-center">
+            {{ element.comment_date | date: "dd/MM/yyyy HH:mm:ss" }}
+          </div>
+        </div>
       </td>
     </ng-container>
     <ng-container matColumnDef="comment_text">
@@ -30,7 +55,9 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="comment_user_link">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>USUARIO</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        USUARIO
+      </th>
       <td mat-cell *matCellDef="let element">
         <a href="{{ element.comment_user_link }}" target="_blank">{{
           element.comment_user
@@ -38,20 +65,41 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="comment_user_photo">
-      <th mat-header-cell *matHeaderCellDef>FOTO</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center">FOTO</th>
       <td mat-cell *matCellDef="let element">
         <div
-          class="photo-user m-1"
+          class="photo-user m-auto"
           [ngStyle]="setBackGround(element.comment_user_photo_url)"
         ></div>
       </td>
     </ng-container>
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
-      <td mat-cell *matCellDef="let element"></td>
+      <td mat-cell *matCellDef="let element" class="action-content">
+        <mat-icon
+          class="action-button"
+          (click)="openNewTab(element.comment_post_link)"
+          >question_answer
+        </mat-icon>
+        <mat-icon
+          class="action-button"
+          (click)="openNewTab(element.comment_user_link)"
+          >account_circle
+        </mat-icon>
+        <mat-icon class="action-button">error</mat-icon>
+        <mat-icon class="action-button">done_all</mat-icon>
+      </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      [ngStyle]="setBackGroundType()"
+      mat-header-row
+      *matHeaderRowDef="displayedColumns"
+    ></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
+  <mat-paginator
+    [ngStyle]="setBackGroundType()"
+    [pageSizeOptions]="[10]"
+    showFirstLastButtons
+  ></mat-paginator>
 </div>

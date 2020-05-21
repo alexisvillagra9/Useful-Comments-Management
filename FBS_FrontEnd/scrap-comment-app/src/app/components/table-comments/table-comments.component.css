@@ -2,11 +2,66 @@ th.mat-sort-header-sorted {
   color: black;
 }
 
-table {
+table.mat-table {
   margin-top: -15px;
+  box-shadow: none !important;
+  width: 100% !important;
+  border-top-left-radius: 0.75em;
+  border-top-right-radius: 0.75em;
+  overflow: hidden;
 }
 
-td, th {
-  padding-left: 1%;
-  padding-right: 1%;
+th,
+td {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+
+tr:hover {
+  background-color: #bbdefb;
+  cursor: pointer;
+}
+
+tr:hover td {
+  background-color: transparent;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  color: #fff;
+}
+
+.type-class {
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.action-button {
+  color: #5290ff;
+  vertical-align: middle;
+  margin: 2%;
+}
+
+::ng-deep .mat-button-base {
+  outline: none !important;
+}
+
+::ng-deep .mat-sort-header-button {
+  outline: none !important;
+}
+
+::ng-deep .mat-paginator {
+  color: #fff;
+  font-weight: bolder;
+  border-bottom-left-radius: 0.75em;
+  border-bottom-right-radius: 0.75em;
+}
+
+::ng-deep .mat-sort-header-arrow {
+  color: #fff;
 }

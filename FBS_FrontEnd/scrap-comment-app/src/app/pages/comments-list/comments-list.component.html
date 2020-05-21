@@ -6,5 +6,9 @@
 </div>
 <mat-divider></mat-divider>
 <div class="row row-fluid m-0 justify-content-md-center">
-  <app-table-comments [type]="this.type" *ngIf="this.type!=0"></app-table-comments>
+  <app-table-comments
+    [type]="this.type"
+    *ngIf="this.type != 0"
+    class="w-100"
+  ></app-table-comments>
 </div>

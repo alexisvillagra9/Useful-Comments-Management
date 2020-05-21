@@ -12,6 +12,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { CustomPaginator } from '../custom-paginator';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   imports: [
@@ -26,7 +28,9 @@ import { CustomPaginator } from '../custom-paginator';
     MatMenuModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatChipsModule,
+    MatTooltipModule
   ],
   exports: [
     MatInputModule,
@@ -39,7 +43,9 @@ import { CustomPaginator } from '../custom-paginator';
     MatMenuModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatChipsModule,
+    MatTooltipModule
   ],
   providers: [{
     provide: MatPaginatorIntl,

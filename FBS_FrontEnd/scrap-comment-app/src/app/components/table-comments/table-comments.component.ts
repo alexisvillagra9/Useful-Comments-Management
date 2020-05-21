@@ -26,6 +26,8 @@ export class TableCommentsComponent implements OnInit {
   dataSource = new MatTableDataSource<Comentarios>([]);
 
   @Input() type: number;
+  backgroundImage = '';
+  typeComment = TypeComment;
 
   constructor(private commentsListService: CommentsListService) {}
 
@@ -34,18 +36,22 @@ export class TableCommentsComponent implements OnInit {
     switch (this.type) {
       case TypeComment.TODOS: {
         this.getComments();
+        this.backgroundImage = this.getBackGroundType(this.type);
         break;
       }
       case TypeComment.PUBLICACIONES: {
         this.getPost();
+        this.backgroundImage = this.getBackGroundType(this.type);
         break;
       }
       case TypeComment.RESPUESTAS: {
         this.getReply();
+        this.backgroundImage = this.getBackGroundType(this.type);
         break;
       }
       case TypeComment.POTABLES: {
         this.getCommentsPotables();
+        this.backgroundImage = this.getBackGroundType(this.type);
         break;
       }
       default: {
@@ -148,5 +154,49 @@ export class TableCommentsComponent implements OnInit {
       'background-image': 'url(' + imgUrlFinal + ')',
     };
     return style;
+  }
+
+  getBackGroundType(type: number) {
+    let background = '';
+
+    switch (type) {
+      case TypeComment.TODOS:
+        background = 'linear-gradient(45deg, #843cf7, #38b8f2)';
+        break;
+      case TypeComment.PUBLICACIONES: {
+        background = 'linear-gradient(45deg, #ee0979, #ff6a00)';
+        break;
+      }
+      case TypeComment.RESPUESTAS: {
+        background = 'linear-gradient(45deg, #004b91, #78cc37)';
+        break;
+      }
+      case TypeComment.POTABLES: {
+        background = 'linear-gradient(45deg, #9b3cb7, #ff396f)';
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+    return background;
+  }
+
+  setBackGroundType() {
+    const style = {
+      'background-image': this.backgroundImage,
+    };
+    return style;
+  }
+
+  setBackGroundTypeDif(type: number) {
+    const style = {
+      'background-image': this.getBackGroundType(type),
+    };
+    return style;
+  }
+
+  openNewTab(url: string) {
+    window.open(url, '_blank');
   }
 }
