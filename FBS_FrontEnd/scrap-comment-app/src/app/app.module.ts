@@ -11,6 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommentsListComponent } from './pages/comments-list/comments-list.component';
 import { TableCommentsComponent } from './components/table-comments/table-comments.component';
+import { DialogContentComponent } from './components/dialog-content/dialog-content.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TableCommentsComponent } from './components/table-comments/table-commen
     HomeComponent,
     DashboardComponent,
     CommentsListComponent,
-    TableCommentsComponent
+    TableCommentsComponent,
+    DialogContentComponent
   ],
   imports: [
     BrowserModule,

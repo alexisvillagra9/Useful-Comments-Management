@@ -1,0 +1,12 @@
+<p class="h5">{{ title }}</p>
+<mat-dialog-content class="mat-typography w-100"> </mat-dialog-content>
+<mat-form-field class="w-100">
+  <mat-label>{{ message }}</mat-label>
+  <textarea matInput placeholder="Escribe el error"></textarea>
+</mat-form-field>
+<mat-dialog-actions align="end">
+  <button class="button-close" mat-button mat-dialog-close>{{ cancelButtonText }}</button>
+  <button class="button-confirm" mat-button [mat-dialog-close]="true" cdkFocusInitial>
+    {{ confirmButtonText }}
+  </button>
+</mat-dialog-actions>

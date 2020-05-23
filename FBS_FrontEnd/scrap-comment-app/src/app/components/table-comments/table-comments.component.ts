@@ -5,6 +5,8 @@ import { CommentsListService } from 'src/app/services/comments/comments-list.ser
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { TypeComment } from '../../models/enums';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogContentComponent } from '../dialog-content/dialog-content.component';
 
 @Component({
   selector: 'app-table-comments',
@@ -29,7 +31,8 @@ export class TableCommentsComponent implements OnInit {
   backgroundImage = '';
   typeComment = TypeComment;
 
-  constructor(private commentsListService: CommentsListService) {}
+  constructor(private commentsListService: CommentsListService,
+              private dialog: MatDialog) {}
 
   ngOnInit(): void {
     // Decidimos que cargamos en base al url
@@ -66,7 +69,6 @@ export class TableCommentsComponent implements OnInit {
     this.commentsListService.getComments().subscribe(
       (res) => {
         this.getCommentsPost(res as Comentarios[]);
-        console.log('aca');
       },
       (error) => console.log('error')
     );
@@ -196,7 +198,53 @@ export class TableCommentsComponent implements OnInit {
     return style;
   }
 
+  setBackGroundError(comment: Comentarios) {
+    let background = '';
+
+    if (comment.comment_report === '' ||
+        comment.comment_report === 'undefined' ||
+        comment.comment_report == null  ) {
+      background = '#9a9a9a';
+    } else {
+      background = '#ff3535';
+    }
+
+    const style = {
+      'background-color': background
+    };
+    return style;
+  }
+
   openNewTab(url: string) {
     window.open(url, '_blank');
+  }
+
+  openDialog(comment: Comentarios) {
+    const dialogRef = this.dialog.open(DialogContentComponent, {
+      width: '600px',
+      height: '500px',
+      data: {
+        title: 'Reportar Mensaje',
+        message: comment.comment_report,
+        buttonText: {
+          ok: 'Guardar',
+          cancel: 'Cancelar'
+        }
+      }
+    });
+    // const snack = this.snackBar.open('Snack bar open before dialog');
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        // snack.dismiss();
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        // snack.dismiss();
+        // this.snackBar.open('Closing snack bar in a few seconds', 'Fechar', {
+        //   duration: 2000,
+        // });
+      }
+    });
   }
 }

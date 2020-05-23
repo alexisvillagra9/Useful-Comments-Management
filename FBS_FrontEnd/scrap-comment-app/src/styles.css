@@ -94,6 +94,13 @@ input {
   font-size: 1rem;
 }
 
+textarea#mat-input-1 {
+  font-family: Comfortaa;
+  font-style: normal;
+  font-variant: normal;
+  font-size: 1rem;
+}
+
 ::-webkit-input-placeholder {
   font-family: Comfortaa;
   font-style: normal;

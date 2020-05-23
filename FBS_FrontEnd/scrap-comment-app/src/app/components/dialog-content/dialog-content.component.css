@@ -1,0 +1,34 @@
+mat-form-field {
+  height: 85%;
+}
+
+textarea#mat-input-1 {
+  resize: none;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  height: 100%;
+}
+
+.button-close {
+  background-color: #9a9a9a;
+}
+
+.button-confirm {
+  background-color: #009aff;
+}
+
+button {
+  font-weight: 700;
+  color: #fff;
+}
+
+button:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: rgba(0, 0, 0, 0.1);
+}
