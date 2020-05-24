@@ -94,7 +94,7 @@ input {
   font-size: 1rem;
 }
 
-textarea#mat-input-1 {
+textarea.mat-input-element {
   font-family: Comfortaa;
   font-style: normal;
   font-variant: normal;

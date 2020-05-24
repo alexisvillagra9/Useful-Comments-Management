@@ -5,3 +5,7 @@ export enum TypeComment {
   POTABLES = 4
 }
 
+export enum TypeCommentText {
+  PUBLICACION = 'post',
+  RESPUESTA = 'reply'
+}

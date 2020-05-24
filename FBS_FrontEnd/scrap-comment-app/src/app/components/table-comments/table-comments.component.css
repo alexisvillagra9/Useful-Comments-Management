@@ -95,3 +95,15 @@ tr:hover td {
 ::ng-deep .mat-sort-header-arrow {
   color: #fff;
 }
+
+.button-menu {
+  outline: none !important;
+}
+
+.button-menu.mat-menu-item {
+  color: #0d47a1;
+}
+
+.button-menu.mat-menu-item:hover {
+  background-color: #bbdefb;
+}

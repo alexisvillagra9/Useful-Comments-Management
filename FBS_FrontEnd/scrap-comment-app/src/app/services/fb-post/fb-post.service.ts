@@ -63,15 +63,12 @@ export class FbPostService {
 
     // console.log(_id, bodyPotable);
 
-    this.http
+    return this.http
       .put(
         this._fbPostUrl + '/update-reply-potable/' + _id,
         bodyPotable,
         httpOptions
-      )
-      .subscribe(res => {
-        return res;
-      });
+      );
   }
 
   updatePotablePost(_id: string, id_reply: string, potable: number) {
@@ -85,14 +82,11 @@ export class FbPostService {
       potable
     });
 
-    this.http
+    return this.http
       .put(
         this._fbPostUrl + '/update-post-potable/' + _id,
         bodyReport,
         httpOptions
-      )
-      .subscribe(res => {
-        return res;
-      });
+      );
   }
 }

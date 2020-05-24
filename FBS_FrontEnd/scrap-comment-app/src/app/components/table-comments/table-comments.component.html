@@ -102,7 +102,11 @@
       mat-header-row
       *matHeaderRowDef="displayedColumns"
     ></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr
+      mat-row
+      (contextmenu)="onContextMenu($event, row)"
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
   </table>
   <mat-paginator
     [ngStyle]="setBackGroundType()"
@@ -110,3 +114,23 @@
     showFirstLastButtons
   ></mat-paginator>
 </div>
+
+<!-- Esto dibuja el menu para cambiar de potable -->
+<div
+  style="visibility: hidden; position: fixed;"
+  [style.left]="contextMenuPosition.x"
+  [style.top]="contextMenuPosition.y"
+  [matMenuTriggerFor]="contextMenu"
+></div>
+<mat-menu #contextMenu="matMenu">
+  <ng-template matMenuContent>
+    <button
+      mat-menu-item
+      class="button-menu"
+      (click)="menuPotableAction(commentMenuAux)"
+      [matTooltip]="potableTooltip"
+    >
+      <mat-icon color="primary">refresh</mat-icon><span>{{ potableMsg }}</span>
+    </button>
+  </ng-template>
+</mat-menu>
