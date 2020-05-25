@@ -1,0 +1,109 @@
+<div class="mt-1 mb-1">
+  <mat-form-field class="w-100">
+    <mat-label>Encuentra la Pagina</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Encuentra la Pagina"
+    />
+  </mat-form-field>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="target_date_in"
+    matSortDirection="desc"
+  >
+    <ng-container matColumnDef="target_date_in">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        FECHA INGRESO
+      </th>
+      <td mat-cell *matCellDef="let element" class="w-auto">
+        {{ element.target_date_in | date: "dd/MM/yyyy HH:mm:ss" }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="target_link">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>PAGINA LINK</th>
+      <td mat-cell *matCellDef="let element" class="w-100">
+        <mat-form-field class="edit-input" *ngIf="editCheck(element)">
+          <input
+            matInput
+            class="edit-input-text"
+            [value]="element.target_link"
+          />
+        </mat-form-field>
+        <a
+          href="{{ element.target_link }}"
+          target="_blank"
+          *ngIf="!editCheck(element)"
+          >{{ element.target_link }}</a
+        >
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="target_desc">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        PAGINA DESCRIPCION
+      </th>
+      <td mat-cell *matCellDef="let element" class="w-100">
+        <mat-form-field class="edit-input" *ngIf="editCheck(element)">
+          <input
+            matInput
+            class="edit-input-text"
+            [value]="element.target_desc"
+          />
+        </mat-form-field>
+        <div *ngIf="!editCheck(element)">{{ element.target_desc }}</div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
+      <td mat-cell *matCellDef="let element" class="text-center">
+        <mat-icon
+          class="action-button text-shadow"
+          matTooltip="Editar Pagina"
+          *ngIf="editVisible()"
+          (click)="editPageEnable(element)"
+          >edit
+        </mat-icon>
+        <mat-icon
+          class="action-button text-shadow"
+          matTooltip="Borrar Pagina"
+          [ngStyle]="setBackGroundBut(3)"
+          *ngIf="editVisible()"
+          (click)="deletePage(element)"
+          >remove
+        </mat-icon>
+        <mat-icon
+          class="action-button text-shadow"
+          matTooltip="Guardar Cambios"
+          [ngStyle]="setBackGroundBut(1)"
+          *ngIf="changeVisible(element)"
+          (click)="savePageChanges(element)"
+          >done
+        </mat-icon>
+        <mat-icon
+          class="action-button text-shadow"
+          matTooltip="Descartar Cambios"
+          [ngStyle]="setBackGroundBut(2)"
+          *ngIf="changeVisible(element)"
+          (click)="discardPageChanges(element)"
+          >clear
+        </mat-icon>
+      </td>
+    </ng-container>
+    <tr
+      mat-header-row
+      *matHeaderRowDef="displayedColumns"
+      [ngStyle]="setBackGroundPage()"
+    ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <div class="pr-3 pl-3" [ngStyle]="setBackGroundPage()">
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  </div>
+  <mat-paginator
+    [pageSizeOptions]="[10]"
+    showFirstLastButtons
+    [ngStyle]="setBackGroundPage()"
+  ></mat-paginator>
+</div>

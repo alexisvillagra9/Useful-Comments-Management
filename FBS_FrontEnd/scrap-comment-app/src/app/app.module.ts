@@ -14,6 +14,8 @@ import { CommentsListComponent } from './pages/comments-list/comments-list.compo
 import { TableCommentsComponent } from './components/table-comments/table-comments.component';
 import { DialogContentComponent } from './components/dialog-content/dialog-content.component';
 import { ClickMenuComponent } from './components/click-menu/click-menu.component';
+import { TargetTableComponent } from './components/target-table/target-table.component';
+import { TargetPagesComponent } from './pages/target-pages/target-pages.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ClickMenuComponent } from './components/click-menu/click-menu.component
     CommentsListComponent,
     TableCommentsComponent,
     DialogContentComponent,
-    ClickMenuComponent
+    ClickMenuComponent,
+    TargetTableComponent,
+    TargetPagesComponent
   ],
   imports: [
     BrowserModule,

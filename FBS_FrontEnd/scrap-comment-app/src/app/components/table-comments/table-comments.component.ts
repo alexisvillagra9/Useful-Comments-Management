@@ -16,6 +16,7 @@ import { FbPostService } from '../../services/fb-post/fb-post.service';
   styleUrls: ['./table-comments.component.css'],
 })
 export class TableCommentsComponent implements OnInit {
+
   displayedColumns: string[] = [
     'comment_date',
     'comment_text',
@@ -37,6 +38,7 @@ export class TableCommentsComponent implements OnInit {
   contextMenu: MatMenuTrigger;
   contextMenuPosition = { x: '0px', y: '0px' };
 
+  loading = true;
   potableMsg = '';
   potableTooltip = '';
   commentMenuAux: Comentarios =  new Comentarios();
@@ -97,6 +99,7 @@ export class TableCommentsComponent implements OnInit {
         this.dataSource.data = finalDataSource;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.loading = false;
       },
       (error) => console.log('error')
     );
@@ -106,9 +109,9 @@ export class TableCommentsComponent implements OnInit {
     this.commentsListService.getCommentsPost().subscribe(
       (res) => {
         this.dataSource.data = res as Comentarios[];
-        // this.isLoading = false;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.loading = false;
       },
       (error) => console.log('error')
     );
@@ -118,9 +121,9 @@ export class TableCommentsComponent implements OnInit {
     this.commentsListService.getComments().subscribe(
       (res) => {
         this.dataSource.data = res as Comentarios[];
-        // this.isLoading = false;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.loading = false;
       },
       (error) => console.log('error')
     );
@@ -136,10 +139,11 @@ export class TableCommentsComponent implements OnInit {
         this.commentsListService.getCommentsPotablesPost().subscribe((res2) => {
           ds2 = res2 as Comentarios[];
           finalDataSource = ds1.concat(ds2);
-          // this.isLoading = false;
           this.dataSource.data = finalDataSource;
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
+          this.loading = false;
+
         });
       },
       (error) => console.log('error')
