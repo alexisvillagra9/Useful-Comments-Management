@@ -27,7 +27,7 @@ export class TargetTableComponent implements OnInit {
   loading = true;
   editingId = '';
 
-  pageEditAux: PaginaObjetivo = new PaginaObjetivo();
+  pageEditCancelAux: PaginaObjetivo;
 
   constructor(private targetPagesService: TargetPagesService) { }
 
@@ -54,9 +54,27 @@ export class TargetTableComponent implements OnInit {
     );
   }
 
+  addNewPageItem() {
+    this.pushElementDataSource();
+    this.editingId = '0';
+  }
+
+  pushElementDataSource() {
+    this.dataSource.filteredData.push(new PaginaObjetivo('0', new Date()));
+    this.dataSource.data = [...this.dataSource.data];
+    // Debemos movernos a la ultima pagina
+    setTimeout(() => {
+      this.dataSource.paginator.lastPage();
+    });
+  }
+
+  aaa() {
+    console.log(this.dataSource.paginator.length,this.dataSource.paginator.pageSize,this.paginator.length);
+  }
+
   editPageEnable(page: PaginaObjetivo) {
     this.editingId = page._id;
-    this.pageEditAux = page;
+    this.pageEditCancelAux = Object.assign({}, page);
   }
 
   editCheck(page: PaginaObjetivo) {
@@ -90,21 +108,70 @@ export class TargetTableComponent implements OnInit {
   }
 
   deletePage(page: PaginaObjetivo) {
+    this.dataSource.data.splice(this.findIndexById(page), 1);
+    this.targetPagesService.deleteTargetPage(page._id);
 
+    // Cargamos el datasource, sort y paginador
+    this.dataSource.data = this.dataSource.data;
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   savePageChanges(page: PaginaObjetivo) {
+    // Si el id que se esta editando es 0 significa que es un nuevo items
+    if (this.editingId === '0') {
+      this.targetPagesService.insertTargetPage(page)
+        .subscribe((res: any) => {
+          this.dataSource.data[this.findIndexById(page)] = res;
+        });
+    } else {
+      this.targetPagesService.updateTargetPage(page);
+    }
+
+    // Finalmente liberamos el editingId y la variable auxiliar
     this.editingId = '';
+    this.pageEditCancelAux = Object.assign({}, new PaginaObjetivo());
   }
 
   discardPageChanges(page: PaginaObjetivo) {
+    // Si es crear nuevo item se borra la fila, caso contrario se setea la variable auxiliar
+    if (page._id === '0') {
+      // Se borra el item
+      this.dataSource.data.splice(this.findIndexById(page), 1);
+    } else {
+      // Actualizamos el valor del dataSource por lo que estaba Originalmente
+      this.dataSource.data[this.findIndexById(page)] = this.pageEditCancelAux;
+    }
+
+    // Cargamos el datasource, sort y paginador
+    this.dataSource.data = this.dataSource.data;
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+
+    // Liberamos el editingId y la variable auxiliar
     this.editingId = '';
+    this.pageEditCancelAux = Object.assign({}, new PaginaObjetivo());
   }
 
-  setBackGroundPage() {
+  findIndexById(page: PaginaObjetivo) {
+    const foundIndex = this.dataSource.data.findIndex(
+      x => x._id === page._id);
+    return foundIndex;
+  }
+
+  setBackGroundPage(color: string) {
+    let col = '';
+
+    if (color === '') {
+      col = '#0d47a1'; // Color Primario;
+    } else {
+      col = color;
+    }
+
     const style = {
-      'background-color': '#0d47a1',
+      'background-color': col,
     };
+
     return style;
   }
 

@@ -12,7 +12,7 @@
     [dataSource]="dataSource"
     matSort
     matSortActive="target_date_in"
-    matSortDirection="desc"
+    matSortDirection="asc"
   >
     <ng-container matColumnDef="target_date_in">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -29,7 +29,7 @@
           <input
             matInput
             class="edit-input-text"
-            [value]="element.target_link"
+            [(ngModel)]="element.target_link"
           />
         </mat-form-field>
         <a
@@ -49,7 +49,7 @@
           <input
             matInput
             class="edit-input-text"
-            [value]="element.target_desc"
+            [(ngModel)]="element.target_desc"
           />
         </mat-form-field>
         <div *ngIf="!editCheck(element)">{{ element.target_desc }}</div>
@@ -94,16 +94,30 @@
     <tr
       mat-header-row
       *matHeaderRowDef="displayedColumns"
-      [ngStyle]="setBackGroundPage()"
+      [ngStyle]="setBackGroundPage('')"
     ></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-  <div class="pr-3 pl-3" [ngStyle]="setBackGroundPage()">
+  <div class="pr-3 pl-3" [ngStyle]="setBackGroundPage('')">
     <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
   </div>
-  <mat-paginator
-    [pageSizeOptions]="[10]"
-    showFirstLastButtons
-    [ngStyle]="setBackGroundPage()"
-  ></mat-paginator>
+  <mat-toolbar class="toolbar-pag" [ngStyle]="setBackGroundPage('')">
+    <mat-toolbar-row class="p-0">
+      <div class="add-content">
+        <mat-icon
+          class="action-button"
+          matTooltip="Agregar nueva pagina"
+          *ngIf="editVisible()"
+          (click)="addNewPageItem()"
+          >add
+        </mat-icon>
+      </div>
+      <mat-paginator
+        [pageSizeOptions]="[10]"
+        showFirstLastButtons
+        [ngStyle]="setBackGroundPage('transparent')"
+      ></mat-paginator>
+    </mat-toolbar-row>
+  </mat-toolbar>
 </div>
+<!-- <div (click)="aaa()">aaa</div> -->

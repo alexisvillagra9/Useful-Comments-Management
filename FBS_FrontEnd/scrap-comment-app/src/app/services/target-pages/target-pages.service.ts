@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PaginaObjetivo } from '../../models/Objetivos/pagina-objetivo';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,7 @@ export class TargetPagesService {
     return target;
   }
 
-  insertTargetPage(
-    target_date_in: Date,
-    target_link: string,
-    target_desc: string
-  ) {
+  insertTargetPage(page: PaginaObjetivo) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -27,13 +24,26 @@ export class TargetPagesService {
     };
 
     const bodyTarget = JSON.stringify({
-      target_date_in,
-      target_link,
-      target_desc
+      target_date_in: page.target_date_in,
+      target_link: page.target_link,
+      target_desc: page.target_desc
     });
 
+    return this.http
+      .post(this._targetUrl + '/insert-target', bodyTarget, httpOptions);
+  }
+
+  updateTargetPage(page: PaginaObjetivo) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    const bodyTarget = JSON.stringify(page);
+
     this.http
-      .post(this._targetUrl + '/insert-target', bodyTarget, httpOptions)
+      .put(this._targetUrl + '/update-target', bodyTarget, httpOptions)
       .subscribe(res => {
         return res;
       });

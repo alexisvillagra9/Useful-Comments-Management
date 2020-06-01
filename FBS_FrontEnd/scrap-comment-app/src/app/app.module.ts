@@ -16,6 +16,10 @@ import { DialogContentComponent } from './components/dialog-content/dialog-conte
 import { ClickMenuComponent } from './components/click-menu/click-menu.component';
 import { TargetTableComponent } from './components/target-table/target-table.component';
 import { TargetPagesComponent } from './pages/target-pages/target-pages.component';
+import { AccountsComponent } from './components/accounts/accounts.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { AccountPageComponent } from './pages/account-page/account-page.component';
+import { SettingPageComponent } from './pages/setting-page/setting-page.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { TargetPagesComponent } from './pages/target-pages/target-pages.componen
     DialogContentComponent,
     ClickMenuComponent,
     TargetTableComponent,
-    TargetPagesComponent
+    TargetPagesComponent,
+    AccountsComponent,
+    SettingsComponent,
+    AccountPageComponent,
+    SettingPageComponent
   ],
   imports: [
     BrowserModule,

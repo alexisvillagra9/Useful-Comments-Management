@@ -9,9 +9,25 @@ targetPagesCtrl.getTargetPages = async (req, res) => {
 
 targetPagesCtrl.InsertTargetPages = async (req, res) => {
   const target = req.body;
+  let status = {};
+
+  // await Target_pages.create(target, function (err, res) {
+  //   if (err != null) {
+  //     status = { status: -1 };
+  //   } else {
+  //     status = { status: 1 };
+  //   }
+  // });
+  let newPage =  await Target_pages.create(target);
+
+  res.json(newPage);
+};
+
+targetPagesCtrl.deleteTargetPages = async (req, res) => {
+  const target = req.body;
   var status = {};
 
-  await Target_pages.create(target, function(err, res) {
+  await Target_pages.deleteOne(target, function (err, res) {
     if (err != null) {
       status = { status: -1 };
     } else {
@@ -22,11 +38,19 @@ targetPagesCtrl.InsertTargetPages = async (req, res) => {
   res.json(status);
 };
 
-targetPagesCtrl.deleteTargetPages = async (req, res) => {
-  const target = req.body;
+targetPagesCtrl.UpdateTargetPages = async (req, res) => {
+  const _id = req.body._id;
+  const target = {
+    target_date_in: req.body.target_date_in,
+    target_link: req.body.target_link,
+    target_desc: req.body.target_desc,
+  };
   var status = {};
 
-  await Target_pages.deleteOne(target, function(err, res) {
+  await Target_pages.findOneAndUpdate(target._id, { $set: target }, function (
+    err,
+    res
+  ) {
     if (err != null) {
       status = { status: -1 };
     } else {

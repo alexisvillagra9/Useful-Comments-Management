@@ -44,6 +44,19 @@
         ><span class="mt-2 mb-2">Administrar</span>
       </button>
     </mat-menu>
+    <button mat-stroked-button class="ml-2" [matMenuTriggerFor]="settingMenu">
+      <p class="m-0 font-weight-bold">Configuracion</p>
+    </button>
+    <mat-menu #settingMenu="matMenu">
+      <button mat-menu-item [routerLink]="['/accounts']">
+        <mat-icon color="primary">account_box</mat-icon
+        ><span class="mt-2 mb-2">Cuentas</span>
+      </button>
+      <button mat-menu-item [routerLink]="['/system-settings']">
+        <mat-icon color="primary">settings</mat-icon
+        ><span class="mt-2 mb-2">Sistema</span>
+      </button>
+    </mat-menu>
     <!-- <p class="m-0 h4 font-weight-bold ml-1 w-100 text-center">
       Useful Comments Management
     </p> -->

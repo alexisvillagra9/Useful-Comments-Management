@@ -46,6 +46,7 @@ tr:hover td {
   overflow: hidden;
   vertical-align: middle;
   user-select: none;
+  cursor: pointer;
 }
 
 .action-button:before {
@@ -71,6 +72,16 @@ tr:hover td {
   height: 30px;
 }
 
+.toolbar-pag{
+   border-bottom-left-radius: 0.75em;
+  border-bottom-right-radius: 0.75em;
+}
+
+.add-content{
+  padding-left: 1%;
+  width: 120px;
+}
+
 ::ng-deep .mat-button-base {
   outline: none !important;
 }
@@ -82,8 +93,9 @@ tr:hover td {
 ::ng-deep .mat-paginator {
   color: #fff;
   font-weight: bolder;
-  border-bottom-left-radius: 0.75em;
-  border-bottom-right-radius: 0.75em;
+  width: 100%;
+  /* border-bottom-left-radius: 0.75em;
+  border-bottom-right-radius: 0.75em; */
 }
 
 ::ng-deep .mat-sort-header-arrow {
